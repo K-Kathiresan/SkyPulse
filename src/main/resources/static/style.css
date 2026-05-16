@@ -1,0 +1,209 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+
+    font-family: 'Poppins', sans-serif;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    min-height: 100vh;
+
+    background: linear-gradient(135deg, #1d2671, #c33764);
+
+    padding: 20px;
+
+    transition: background 0.5s ease;
+}
+
+body.sunny{
+    background: linear-gradient(135deg, #ffb347, #ffcc33);
+}
+
+body.rainy{
+    background: linear-gradient(135deg, #141e30, #243b55);
+}
+
+body.cloudy{
+    background: linear-gradient(135deg, #606c88, #3f4c6b);
+}
+
+body.default-weather{
+    background: linear-gradient(135deg, #1d2671, #c33764);
+}
+.container {
+
+    width: 100%;
+    max-width: 420px;
+
+    background: rgba(255, 255, 255, 0.15);
+
+    backdrop-filter: blur(15px);
+
+    border: 1px solid rgba(255,255,255,0.2);
+
+    border-radius: 25px;
+
+    padding: 35px;
+
+    text-align: center;
+
+    color: white;
+
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.logo {
+
+    font-size: 48px;
+
+    font-weight: 700;
+
+    margin-bottom: 30px;
+
+    color: white;
+
+    letter-spacing: 2px;
+
+    position: relative;
+
+    display: inline-block;
+}
+
+
+.search-box {
+
+    display: flex;
+
+    gap: 10px;
+}
+
+input {
+
+    flex: 1;
+
+    padding: 14px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    outline: none;
+
+    font-size: 16px;
+
+    background: rgba(255,255,255,0.2);
+
+    color: white;
+}
+
+input::placeholder {
+    color: rgba(255,255,255,0.8);
+}
+
+button {
+
+    padding: 14px 18px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: white;
+
+    color: #1d2671;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+button:hover {
+
+    transform: scale(1.05);
+
+    background: #f1f1f1;
+}
+
+#loading {
+
+    margin-top: 20px;
+
+    font-size: 18px;
+
+    font-weight: 500;
+}
+
+.weather-card {
+
+    margin-top: 25px;
+
+    padding: 25px;
+
+    border-radius: 20px;
+
+    background: rgba(255,255,255,0.15);
+
+    border: 1px solid rgba(255,255,255,0.2);
+
+    animation: fadeIn 0.4s ease;
+}
+
+.weather-card h2 {
+
+    font-size: 32px;
+
+    margin-bottom: 10px;
+}
+
+.weather-card h3 {
+
+    font-size: 60px;
+
+    margin-bottom: 10px;
+
+    font-weight: 700;
+}
+
+.weather-card p {
+
+    font-size: 18px;
+
+    margin-top: 8px;
+}
+
+.error {
+
+    margin-top: 20px;
+
+    background: rgba(255,0,0,0.2);
+
+    padding: 12px;
+
+    border-radius: 10px;
+}
+
+@keyframes fadeIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+#weatherIcon{
+    width: 100px;
+    height: 100px;
+}
