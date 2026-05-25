@@ -2,52 +2,115 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-          <title>Weather App</title>
-
-    <link rel="preconnect"
-          href="https://fonts.googleapis.com">
-
-    <link rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-          rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyPulse</title>
 
     <link rel="stylesheet" href="style.css">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
 </head>
 
 <body>
 
-<div class="container">
+    <div class="container">
 
-    <h1 class="logo">
-        SkyPulse
-    </h1>
+        <h1 class="logo">SkyPulse</h1>
 
-    <div class="search-box">
+        <div class="search-box">
+            <input type="text" id="cityInput" placeholder="Enter city">
 
-        <input
-                type="text"
-                id="cityInput"
-                placeholder="Enter city name">
+            <button onclick="getWeather()">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </div>
 
-        <button onclick="getWeather()">
-            Search
-        </button>
+        <div class="weather-card">
+
+            <h2 id="cityName">Chennai</h2>
+
+            <img id="weatherIcon"
+                src="https://openweathermap.org/img/wn/10d@2x.png"
+                alt="Weather Icon">
+
+            <h1 id="temperature">32°C</h1>
+
+            <p id="description">Patchy rain nearby</p>
+
+            <p class="smart-message" id="smartMessage">
+                Carry an umbrella today
+            </p>
+
+            <div class="details">
+
+                <div class="detail-card">
+                    <i class="fa-solid fa-droplet"></i>
+                    <p>Humidity</p>
+                    <h3 id="humidity">80%</h3>
+                </div>
+
+                <div class="detail-card">
+                    <i class="fa-solid fa-wind"></i>
+                    <p>Wind</p>
+                    <h3 id="wind">12 km/h</h3>
+                </div>
+
+                <div class="detail-card">
+                    <i class="fa-solid fa-temperature-high"></i>
+                    <p>Feels Like</p>
+                    <h3 id="feelsLike">35°C</h3>
+                </div>
+
+                <div class="detail-card">
+                    <i class="fa-solid fa-eye"></i>
+                    <p>Visibility</p>
+                    <h3 id="visibility">6 km</h3>
+                </div>
+
+            </div>
+        </div>
+
+        <h2 class="forecast-title">5-Day Forecast</h2>
+
+        <div class="forecast-container">
+
+            <div class="forecast-card">
+                <p>Mon</p>
+                <img src="https://openweathermap.org/img/wn/01d@2x.png">
+                <h3>34°C</h3>
+            </div>
+
+            <div class="forecast-card">
+                <p>Tue</p>
+                <img src="https://openweathermap.org/img/wn/10d@2x.png">
+                <h3>30°C</h3>
+            </div>
+
+            <div class="forecast-card">
+                <p>Wed</p>
+                <img src="https://openweathermap.org/img/wn/04d@2x.png">
+                <h3>31°C</h3>
+            </div>
+
+            <div class="forecast-card">
+                <p>Thu</p>
+                <img src="https://openweathermap.org/img/wn/02d@2x.png">
+                <h3>33°C</h3>
+            </div>
+
+            <div class="forecast-card">
+                <p>Fri</p>
+                <img src="https://openweathermap.org/img/wn/01d@2x.png">
+                <h3>35°C</h3>
+            </div>
+
+        </div>
 
     </div>
 
-    <div id="loading"></div>
-
-    <div id="result"></div>
-
-</div>
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 
 </body>
 </html>

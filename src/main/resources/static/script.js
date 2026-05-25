@@ -1,81 +1,103 @@
 async function getWeather() {
 
-    const city =
-        document.getElementById("cityInput").value;
+    const city = document.getElementById("cityInput").value;
 
-    const result =
-        document.getElementById("result");
+    if(city === ""){
+        alert("Enter city name");
+        return;
+    }
 
-    const loading =
-        document.getElementById("loading");
+    try{
 
-    try {
+        const response = await fetch(`/weather?city=${city}`);
 
-        loading.innerHTML = "Loading...";
-        result.innerHTML = "";
-
-        const response = await fetch(
-            `http://localhost:8080/weather?city=${city}`
-        );
-
-        if (!response.ok) {
-
-            const errorMessage =
-                await response.text();
-
-            throw new Error(errorMessage);
+        if(!response.ok){
+            throw new Error("City not found");
         }
 
         const data = await response.json();
-        const condition = data.condition.toLowerCase();
 
-        document.body.className = "";
+        console.log(data);
 
-        if(condition.includes("sun")){
+        document.getElementById("cityName").innerText =
+            data.city;
 
-            document.body.classList.add("sunny");
-        }
-        else if(condition.includes("rain")){
+        document.getElementById("temperature").innerText =
+            Math.round(data.temperature) + "°C";
 
-            document.body.classList.add("rainy");
-        }
-        else if(condition.includes("cloud")){
+        document.getElementById("description").innerText =
+            data.condition;
 
-            document.body.classList.add("cloudy");
-        }
-        else{
+        document.getElementById("humidity").innerText =
+            data.humidity + "%";
 
-            document.body.classList.add("default-weather");
-        }
+        document.getElementById("weatherIcon").src =
+            "https:" + data.icon;
 
-        loading.innerHTML = "";
+        // Temporary dummy values
+        document.getElementById("wind").innerText =
+            "12 km/h";
 
-        result.innerHTML = `
-                    <div class="weather-card">
+        document.getElementById("feelsLike").innerText =
+            Math.round(data.temperature + 2) + "°C";
 
-            <h2>${data.city}</h2>
+        document.getElementById("visibility").innerText =
+            "6 km";
 
-            <img
-                src="https:${data.icon}"
-                alt="Weather Icon"
-                id="weatherIcon"
-            >
+        updateTheme(data.condition);
 
-            <h3>${data.temperature}°C</h3>
+        updateMessage(data.temperature);
 
-            <p>${data.condition}</p>
-
-            <p>Humidity: ${data.humidity}%</p>
-
-        </div>
-`;
-
-    } catch(error) {
-
-        loading.innerHTML = "";
-
-        result.innerHTML = `
-            <p>${error.message}</p>
-        `;
     }
+    catch(error){
+        alert(error.message);
+    }
+}
+
+function updateTheme(condition){
+
+    condition = condition.toLowerCase();
+
+    if(condition.includes("rain")){
+
+        document.body.style.background =
+            "linear-gradient(-45deg,#0f172a,#1d4ed8,#1e40af,#0f172a)";
+    }
+
+    else if(condition.includes("sun")){
+
+        document.body.style.background =
+            "linear-gradient(-45deg,#f59e0b,#f97316,#facc15,#fb923c)";
+    }
+
+    else if(condition.includes("cloud")){
+
+        document.body.style.background =
+            "linear-gradient(-45deg,#4b5563,#6b7280,#374151,#1f2937)";
+    }
+
+    else{
+
+        document.body.style.background =
+            "linear-gradient(-45deg,#0f172a,#1e3a8a,#2563eb,#0f172a)";
+    }
+}
+
+function updateMessage(temp){
+
+    let message = "";
+
+    if(temp >= 35){
+        message = "High temperature outside. Stay hydrated.";
+    }
+
+    else if(temp >= 25){
+        message = "Perfect weather for outdoor activities.";
+    }
+
+    else{
+        message = "Cool climate detected. Enjoy the weather.";
+    }
+
+    document.getElementById("smartMessage").innerText = message;
 }
