@@ -2,6 +2,9 @@ package com.project.weatherapp.service;
 
 import com.project.weatherapp.dto.WeatherResponse;
 import com.project.weatherapp.model.WeatherApiResponse;
+
+import tools.jackson.databind.JsonNode;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -47,4 +50,50 @@ public class WeatherService {
         }
 
     }
+    public WeatherResponse getWeatherByCoordinates(
+        double lat,
+        double lon){
+
+    String url =
+        "http://api.weatherapi.com/v1/current.json?key="
+        + apiKey
+        + "&q="
+        + lat
+        + ","
+        + lon;
+
+    RestTemplate restTemplate = new RestTemplate();
+
+    JsonNode root = restTemplate.getForObject(url, JsonNode.class);
+
+    WeatherResponse response = new WeatherResponse();
+
+    response.setCity(
+        root.path("location").path("name").asText()
+    );
+
+    response.setTemperature(
+        root.path("current").path("temp_c").asDouble()
+    );
+
+    response.setCondition(
+        root.path("current")
+            .path("condition")
+            .path("text")
+            .asText()
+    );
+
+    response.setHumidity(
+        root.path("current").path("humidity").asInt()
+    );
+
+    response.setIcon(
+        root.path("current")
+            .path("condition")
+            .path("icon")
+            .asText()
+    );
+
+    return response;
+}
 }

@@ -22,5 +22,12 @@ public class HelloController {
     }
         return weatherService.getWeather(city);
     }
-    
+    @GetMapping("/weather/location")
+        public WeatherResponse getWeatherByLocation(
+                @RequestParam double lat,
+                @RequestParam double lon){
+
+            return weatherService.getWeatherByCoordinates(lat, lon);
+        }
+            
 }

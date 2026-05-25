@@ -53,6 +53,77 @@ async function getWeather() {
         alert(error.message);
     }
 }
+function getCurrentLocationWeather(){
+
+    if(!navigator.geolocation){
+
+        alert("Geolocation is not supported");
+        return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+
+        async(position)=>{
+
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
+
+            try{
+
+                const response = await fetch(
+                    `/weather/location?lat=${lat}&lon=${lon}`
+                );
+
+                if(!response.ok){
+                    throw new Error("Location weather failed");
+                }
+
+                const data = await response.json();
+
+                console.log(data);
+
+                document.getElementById("cityName").innerText =
+                    data.city;
+
+                document.getElementById("temperature").innerText =
+                    Math.round(data.temperature) + "°C";
+
+                document.getElementById("description").innerText =
+                    data.condition;
+
+                document.getElementById("humidity").innerText =
+                    data.humidity + "%";
+
+                document.getElementById("weatherIcon").src =
+                    "https:" + data.icon;
+
+                document.getElementById("wind").innerText =
+                    "12 km/h";
+
+                document.getElementById("feelsLike").innerText =
+                    Math.round(data.temperature + 2) + "°C";
+
+                document.getElementById("visibility").innerText =
+                    "6 km";
+
+                updateTheme(data.condition);
+
+                updateMessage(data.temperature);
+
+            }
+            catch(error){
+
+                alert(error.message);
+            }
+
+        },
+
+        ()=>{
+
+            alert("Location access denied");
+        }
+    );
+}
 
 function updateTheme(condition){
 
