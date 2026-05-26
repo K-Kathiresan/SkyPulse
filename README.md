@@ -4,7 +4,10 @@ SkyPulse is a modern weather forecasting web application built using Spring Boot
 It provides real-time weather updates with a premium glassmorphism UI and dynamic weather-based themes.
 
 ---
-
+## Live Demo:
+```
+https://skypulse-yqst.onrender.com/
+```
 ## Features
 
 - Real-time weather data
