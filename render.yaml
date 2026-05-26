@@ -3,5 +3,3 @@ services:
     name: skypulse
     env: docker
     plan: free
-    buildCommand: "./mvnw package -DskipTests"
-    startCommand: "java -jar target/weatherapp-0.0.1-SNAPSHOT.jar"
