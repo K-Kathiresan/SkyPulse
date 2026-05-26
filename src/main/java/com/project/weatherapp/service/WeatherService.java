@@ -3,7 +3,7 @@ package com.project.weatherapp.service;
 import com.project.weatherapp.dto.WeatherResponse;
 import com.project.weatherapp.model.WeatherApiResponse;
 
-import tools.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.JsonNode;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
