@@ -44,7 +44,9 @@ https://skypulse-yqst.onrender.com/
 ## Screenshots
 
 ### Home UI
-(Add your screenshots here later)
+<img width="1917" height="1030" alt="img1" src="https://github.com/user-attachments/assets/8e070707-7f8e-4c2a-b91e-d1a4567b9f8e" />
+<img width="1919" height="1029" alt="img2" src="https://github.com/user-attachments/assets/e6e17bea-b9a7-4f6e-9061-79727118dd13" />
+
 
 ---
 
